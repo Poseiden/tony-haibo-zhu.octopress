@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>对Python高阶函数的一些理解 - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="本人是一名Java程序员，在最近学习python的过程中，因为思维惯性和没有认真理解python的概念，导致很多例子混淆。现在写下这篇笔记，让自己以后在回头看看的时候也有个参考。LoL。。。。。 python版本：3.4.3 python交互环境：ipython 环境：Ubuntu14.04 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://yoursite.com/blog/2016/03/23/%E5%AF%B9python%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="yoursite.com">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">对Python高阶函数的一些理解</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-03-23T08:59:16+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2016</span></span> <span class='time'>8:59 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>本人是一名Java程序员，在最近学习python的过程中，因为思维惯性和没有认真理解python的概念，导致很多例子混淆。现在写下这篇笔记，让自己以后在回头看看的时候也有个参考。LoL。。。。。</p>
+
+<h5>python版本：3.4.3</h5>
+
+<h5>python交互环境：ipython</h5>
+
+<h5>环境：Ubuntu14.04 LTS</h5>
+
+<!--more-->
+
+
+<p>首先，在Python这种解释型语言中，要搞明白函数，和函数调用的区别。例如，在python中有一个内置的求绝对值的函数“abs”。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>In[1]: abs
+</span><span class='line'>Out[2]:&lt;function abs&gt;
+</span><span class='line'>
+</span><span class='line'>In[2]:abs()
+</span><span class='line'>---------------------------------------------------------------------------
+</span><span class='line'> TypeError                                 Traceback (most recent call last)
+</span><span class='line'> &lt;ipython-input-3-3a546e8778c7&gt; in &lt;module&gt;()
+</span><span class='line'> ----&gt; 1 abs()
+</span><span class='line'>
+</span><span class='line'> TypeError: abs() takes exactly one argument (0 given)
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>以上例子中，在输入<code>abs</code>时，交互环境表示这是一个function,而在输入<code>abs()</code>时,交互环境报错，提示应该传入一个参数但是实际给了0个（这个翻译有点蹩脚）。这里就说明在输入<code>abs()</code>时，实际上已经调用了abs()函数，而不是仅仅表示这个函数。Ok，在讲清楚了这点之后，后面就好理解了。</p>
+
+<p>在python中，变量可以指向函数，也就是用变量代表函数，而在Java中，这个是不可以的。例如：</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>In[2]: f = abs
+</span><span class='line'>
+</span><span class='line'>In[3]: f
+</span><span class='line'>Out[3]: &lt;function abs&gt; 
+</span><span class='line'>
+</span><span class='line'>In[4]: f(-1)
+</span><span class='line'>Out[4]:1</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在上面的例子中，在将f指向abs函数后，可以通过f()的方式同样调用abs()函数。</p>
+
+<p>这些只是高阶函数的冰山一角，高阶函数的特性还允许将函数作为参数传入另一个函数，和把一个函数作为返回值返回，闭包等等。时间有限，暂且不表，在以后的笔记中再介绍吧。</p>
+
+<h3>参考</h3>
+
+<p>最后，推荐一个很好的学习python的网站。</p>
+
+<ul>
+<li><a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014317849054170d563b13f0fa4ce6ba1cd86e18103f28000">廖雪峰的python3教程-高阶函数</a></li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Your Name</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2016-03-23T08:59:16+08:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2016</span></span> <span class='time'>8:59 am</span></time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://yoursite.com/blog/2016/03/23/%E5%AF%B9python%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3/" data-via="" data-counturl="http://yoursite.com/blog/2016/03/23/%E5%AF%B9python%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/12/08/%E6%B5%85%E8%B0%88MyEclipse%E5%92%8CIdea%E4%B8%ADTomcat%E7%9A%84%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F/" title="Previous Post: 浅谈MyEclipse和Idea中Tomcat的部署方式以及在项目中设置上下文的相关">&laquo; 浅谈MyEclipse和Idea中Tomcat的部署方式以及在项目中设置上下文的相关</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2016/04/19/generator-of-python/" title="Next Post: Generator of Python">Generator of Python &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2016/04/19/generator-of-python/">Generator of Python</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/03/23/%E5%AF%B9python%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3/">对Python高阶函数的一些理解</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/12/08/%E6%B5%85%E8%B0%88MyEclipse%E5%92%8CIdea%E4%B8%ADTomcat%E7%9A%84%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F/">浅谈MyEclipse和Idea中Tomcat的部署方式以及在项目中设置上下文的相关</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/20/%E6%8A%98%E8%85%BEOctopress%E7%9A%84%E4%B8%80%E7%82%B9%E5%BF%83%E5%BE%97/">折腾Octopress的一点心得</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
