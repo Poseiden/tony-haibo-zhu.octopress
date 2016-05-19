@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://yoursite.com/blog/2016/04/19/generator-of-python/</loc>
+<loc>http://tony-haibo-zhu.github.io/blog/2016/04/19/generator-of-python/</loc>
 <lastmod>2016-04-19T21:42:39+08:00</lastmod>
 </url>
 <url>
-<loc>http://yoursite.com/blog/2016/03/23/%25E5%25AF%25B9python%25E9%25AB%2598%25E9%2598%25B6%25E5%2587%25BD%25E6%2595%25B0%25E7%259A%2584%25E4%25B8%2580%25E4%25BA%259B%25E7%2590%2586%25E8%25A7%25A3/</loc>
+<loc>http://tony-haibo-zhu.github.io/blog/2016/03/23/%25E5%25AF%25B9python%25E9%25AB%2598%25E9%2598%25B6%25E5%2587%25BD%25E6%2595%25B0%25E7%259A%2584%25E4%25B8%2580%25E4%25BA%259B%25E7%2590%2586%25E8%25A7%25A3/</loc>
 <lastmod>2016-03-23T08:59:16+08:00</lastmod>
 </url>
 <url>
-<loc>http://yoursite.com/blog/2015/12/08/%25E6%25B5%2585%25E8%25B0%2588MyEclipse%25E5%2592%258CIdea%25E4%25B8%25ADTomcat%25E7%259A%2584%25E9%2583%25A8%25E7%25BD%25B2%25E6%2596%25B9%25E5%25BC%258F/</loc>
+<loc>http://tony-haibo-zhu.github.io/blog/2015/12/08/%25E6%25B5%2585%25E8%25B0%2588MyEclipse%25E5%2592%258CIdea%25E4%25B8%25ADTomcat%25E7%259A%2584%25E9%2583%25A8%25E7%25BD%25B2%25E6%2596%25B9%25E5%25BC%258F/</loc>
 <lastmod>2015-12-08T18:40:44+08:00</lastmod>
 </url>
 <url>
-<loc>http://yoursite.com/blog/2015/11/20/%25E6%258A%2598%25E8%2585%25BEOctopress%25E7%259A%2584%25E4%25B8%2580%25E7%2582%25B9%25E5%25BF%2583%25E5%25BE%2597/</loc>
+<loc>http://tony-haibo-zhu.github.io/blog/2015/11/20/%25E6%258A%2598%25E8%2585%25BEOctopress%25E7%259A%2584%25E4%25B8%2580%25E7%2582%25B9%25E5%25BF%2583%25E5%25BE%2597/</loc>
 <lastmod>2015-11-20T16:51:05+08:00</lastmod>
 </url>
 <url>
-<loc>http://yoursite.com/</loc>
+<loc>http://tony-haibo-zhu.github.io/</loc>
 </url>
 <url>
-<loc>http://yoursite.com/blog/archives/</loc>
+<loc>http://tony-haibo-zhu.github.io/blog/archives/</loc>
 </url>
 </urlset>
